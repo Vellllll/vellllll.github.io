@@ -1,340 +1,409 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arvel Budiono - Backend Developer Portfolio</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <style>
-    /* Smooth transitions */
-    .transition-smooth {
-      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
-    }
-    html {
-      scroll-padding-top: 80px;
-    }
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid #2563eb;
-      outline-offset: 2px;
-    }
-    #mobile-menu.hidden {
-      display: none;
-    }
-    .company-logo {
-      width: 56px;
-      height: 56px;
-      object-fit: contain;
-      transition: filter 0.3s ease;
-      border-radius: 0.5rem;
-    }
-    .company-logo:hover,
-    .company-logo:focus {
-      filter: none;
-      outline: none;
-    }
-    .contact-container {
-      max-width: 480px;
-      margin: 0 auto;
-      background-color: #fff;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 6px rgb(0 0 0 / 0.05);
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      font-size: 1rem;
-      color: #4B352A;
-    }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .contact-icon-wrapper {
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      color: #4B352A;
-    }
-    .contact-label {
-      font-weight: 700;
-      min-width: 5.5rem;
-    }
-    .contact-value a,
-    .contact-value span {
-      color: #6b7280;
-      text-decoration: none;
-      word-break: break-word;
-    }
-    .contact-value a:hover,
-    .contact-value a:focus {
-      color: #CA7842;
-      text-decoration: underline;
-      outline: none;
-    }
-    #profile-pic {
-      border-radius: 9999px;
-      width: 128px;
-      height: 128px;
-      object-fit: cover;
-      box-shadow: 0 10px 20px rgb(0 0 0 / 0.1);
-      margin-bottom: 1.5rem;
-      border: 3px solid #CA7842;
-    }
-    .external-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      color: #6b7280;
-      text-decoration: none;
-      font-size: 1.125rem;
-      transition: color 0.3s ease;
-    }
-    .external-link:hover,
-    .external-link:focus {
-      color: #CA7842;
-      text-decoration: underline;
-      outline: none;
-    }
-    .external-link svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-    }
-    /* Programming languages badge */
-    .lang-badge {
-      display: inline-block;
-      background-color: #CA7842;
-      color: white;
-      font-weight: 600;
-      font-size: 0.875rem;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      margin-right: 0.5rem;
-      margin-top: 0.5rem;
-      user-select: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arvel Budiono | Solution Engineer & Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',   /* Royal Blue */
+                        secondary: '#1E293B', /* Slate 800 */
+                        accent: '#F59E0B',    /* Amber */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Grayscale logos until hover */
+        .company-logo {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .company-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    </style>
 </head>
-<body class="bg-white text-gray-700 font-sans">
-<header class="sticky top-0 z-50 bg-white border-b border-gray-200" role="banner">
-  <nav class="max-w-[1200px] mx-auto flex items-center justify-between px-6 py-4" aria-label="Primary navigation">
-    <a href="#hero" class="font-extrabold text-3xl sm:text-4xl text-gray-900 select-none" tabindex="0">Arvel Budiono</a>
-    <ul class="hidden md:flex space-x-8 font-semibold text-gray-700">
-      <li><a href="#about" class="hover:text-gray-900 transition-smooth">About</a></li>
-      <li><a href="#projects" class="hover:text-gray-900 transition-smooth">Projects</a></li>
-      <li><a href="#companies" class="hover:text-gray-900 transition-smooth">Companies</a></li>
-      <li><a href="#contact" class="hover:text-gray-900 transition-smooth">Contact</a></li>
-    </ul>
-    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" class="md:hidden focus:outline-none text-gray-700">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-  </nav>
-  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200" role="menu" aria-label="Mobile menu">
-    <ul class="flex flex-col px-6 py-6 space-y-4 font-semibold text-gray-700">
-      <li><a href="#about" class="block hover:text-gray-900 transition-smooth" role="menuitem">About</a></li>
-      <li><a href="#projects" class="block hover:text-gray-900 transition-smooth" role="menuitem">Projects</a></li>
-      <li><a href="#companies" class="block hover:text-gray-900 transition-smooth" role="menuitem">Companies</a></li>
-      <li><a href="#contact" class="block hover:text-gray-900 transition-smooth" role="menuitem">Contact</a></li>
-    </ul>
-  </div>
-</header>
+<body class="bg-gray-50 text-slate-800 font-sans leading-relaxed">
 
-<main class="max-w-[1200px] mx-auto px-6">
-  <!-- Hero Section -->
-  <section id="hero" class="pt-20 pb-20 flex flex-col md:flex-row items-center md:items-start gap-8 sm:gap-12">
-    <img id="profile-pic" src="./profile.jpeg" alt="Profile picture of Arvel Budiono" />
-    <div>
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight max-w-3xl">
-        Hi, I'm Arvel — Backend Developer and Project Manager
-      </h1>
-      <p class="mt-4 max-w-xl text-gray-600 text-lg sm:text-xl leading-relaxed">
-        I turn complex backend challenges into simple, scalable solutions. With over a year of hands-on experience, I focus on creating robust APIs and seamless integrations.
-      </p>
-      <div class="mt-6">
-        <span class="lang-badge">Python</span>
-        <span class="lang-badge">Flask</span>
-        <span class="lang-badge">PostgreSQL</span>
-        <span class="lang-badge">JavaScript</span>
-        <span class="lang-badge">Golang</span>
-      </div>
-      <a href="#projects" class="inline-block mt-8 bg-black text-white font-semibold text-base px-8 py-3 rounded-lg shadow-lg hover:bg-gray-900 transition-smooth focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-blue-600" aria-label="View my projects">
-        Explore My Work
-      </a>
-    </div>
-  </section>
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-secondary">Arvel<span class="text-primary">.dev</span></a>
+            
+            <div class="hidden md:flex space-x-8 font-medium text-gray-600">
+                <a href="#about" class="hover:text-primary transition">About</a>
+                <a href="#experience" class="hover:text-primary transition">Experience</a>
+                <a href="#skills" class="hover:text-primary transition">Skills</a>
+                <a href="#projects" class="hover:text-primary transition">Projects</a>
+                <a href="#contact" class="hover:text-primary transition">Contact</a>
+            </div>
 
-  <!-- About Section -->
-  <section id="about" class="pt-16 pb-20 max-w-3xl mx-auto text-center">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8">About Me</h2>
-    <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-4">
-      I'm passionate about building backend systems that just work — efficient, reliable, and scalable. In my current role, I've helped grow applications used daily by thousands, bringing meaningful impact.
-    </p>
-    <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-4">
-      Outside coding, I enjoy collaborating with teams, managing projects, and continuously learning new technologies like Golang and cloud platforms.
-    </p>
-    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
-      I hold a Computer Science degree from Soegijapranata Catholic University and have completed immersive cloud training at Bangkit Academy 2023.
-    </p>
-  </section>
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-secondary focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-lg absolute w-full">
+            <a href="#about" class="block py-2 text-gray-600 hover:text-primary">About</a>
+            <a href="#experience" class="block py-2 text-gray-600 hover:text-primary">Experience</a>
+            <a href="#skills" class="block py-2 text-gray-600 hover:text-primary">Skills</a>
+            <a href="#projects" class="block py-2 text-gray-600 hover:text-primary">Projects</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-primary">Contact</a>
+        </div>
+    </nav>
 
-  <!-- Projects Section -->
-  <section id="projects" class="pt-16 pb-20 max-w-5xl mx-auto">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">Some Projects I’m Proud Of</h2>
-    <div class="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      <article tabindex="0" class="bg-white rounded-lg shadow-md p-6 flex flex-col transition-smooth hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">
-          <a href="https://ibos.id" target="_blank" rel="noopener" class="external-link" aria-label="Visit iBos website">
-            iBos - Bus &amp; Travel Ticketing System
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </h3>
-        <p class="text-gray-600 flex-grow leading-relaxed text-sm sm:text-base">
-          Building and maintaining robust backend features supporting thousands of users booking bus tickets with ease.
-        </p>
-        <div>
-          <span class="lang-badge">Python</span>
-          <span class="lang-badge">Flask</span>
-          <span class="lang-badge">PostgreSQL</span>
-          <span class="lang-badge">JavaScript</span>
-        </div>
-      </article>
-      <article tabindex="0" class="bg-white rounded-lg shadow-md p-6 flex flex-col transition-smooth hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">
-          <a href="https://salesmania.id" target="_blank" rel="noopener" class="external-link" aria-label="Visit SalesMania website">
-            SalesMania - Sales Management System
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </h3>
-        <p class="text-gray-600 flex-grow leading-relaxed text-sm sm:text-base">
-          Helping teams track and enhance sales performance with reliable backend APIs and insightful data handling.
-        </p>
-        <div>
-          <span class="lang-badge">Python</span>
-          <span class="lang-badge">Flask</span>
-          <span class="lang-badge">PostgreSQL</span>
-        </div>
-      </article>
-      <article tabindex="0" class="bg-white rounded-lg shadow-md p-6 flex flex-col transition-smooth hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">
-          <a href="https://vehiloc.net" target="_blank" rel="noopener" class="external-link" aria-label="Visit VehiLoc website">
-            VehiLoc - GPS Tracking System
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </h3>
-        <p class="text-gray-600 flex-grow leading-relaxed text-sm sm:text-base">
-          Streamlining vehicle tracking with efficient backend improvements and smart data APIs.
-        </p>
-        <div>
-          <span class="lang-badge">Python</span>
-          <span class="lang-badge">Flask</span>
-          <span class="lang-badge">PostgreSQL</span>
-          <span class="lang-badge">JavaScript</span>
-        </div>
-      </article>
-      <article tabindex="0" class="bg-white rounded-lg shadow-md p-6 flex flex-col transition-smooth hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300">
-        <h3 class="text-xl font-semibold text-gray-900 mb-3">Sport Field Booking System (Mini Project)</h3>
-        <p class="text-gray-600 flex-grow leading-relaxed text-sm sm:text-base">
-          Exploring concurrency and backend design with Golang in a practical booking system mini project.
-        </p>
-        <div>
-          <span class="lang-badge">Golang</span>
-        </div>
-      </article>
-    </div>
-  </section>
+    <header id="about" class="pt-32 pb-20 md:pt-40 md:pb-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white overflow-hidden relative">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
+        
+        <div class="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-12">
+            
+            <div class="md:w-1/2 text-center md:text-left z-10">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-4 border border-blue-500/30">
+                    Solution Engineer & Backend Developer
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">Arvel Budiono</span>
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
+                    Specializing in Hybrid Development. I bridge the gap between heavy-code architectures and efficient No-Code solutions to solve enterprise problems.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="px-8 py-3 bg-primary hover:bg-blue-600 rounded-lg font-semibold transition shadow-lg shadow-blue-500/30 text-center">
+                        Contact Me
+                    </a>
+                    <a href="https://linkedin.com/in/arvelbudiono" target="_blank" class="px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg font-semibold transition backdrop-blur-sm text-center">
+                        <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
 
-  <!-- Companies Section -->
-  <section id="companies" class="pt-16 pb-20 bg-gray-50 rounded-lg">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 max-w-3xl mx-auto text-center">Where I've Worked</h2>
-    <div class="flex flex-col md:flex-row gap-10 max-w-4xl mx-auto justify-center">
-      <article tabindex="0" class="bg-white rounded-lg shadow-md p-6 flex items-center gap-6 transition-smooth hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 flex-1">
-        <img src="./ibos.png" alt="PT Buana Online Sejahtera Logo" class="company-logo rounded" />
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-1">PT Buana Online Sejahtera</h3>
-          <p class="text-gray-700 font-semibold text-sm mb-1">Backend Developer</p>
-          <p class="text-gray-600 text-sm max-w-xs">
-            Proud to develop and maintain backend capabilities powering bus ticketing, sales, and tracking systems used daily by thousands.
-          </p>
+            <div class="md:w-1/2 flex justify-center relative z-10">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 border-2 border-blue-500/50 rounded-full animate-pulse"></div>
+                    <div class="absolute inset-2 border-2 border-teal-400/30 rounded-full"></div>
+                    
+                    <img 
+                        src="profile.jpeg" 
+                        alt="Arvel Budiono" 
+                        class="w-full h-full object-cover rounded-full shadow-2xl border-4 border-slate-700 relative z-10"
+                    >
+                    
+                    <div class="absolute bottom-4 -right-4 bg-white text-slate-800 px-4 py-2 rounded-lg shadow-lg flex items-center gap-2 z-20 animate-bounce" style="animation-duration: 3s;">
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-xs font-bold">Open to Work</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </article>
-      <article tabindex="0" class="bg-white rounded-lg shadow-md p-6 flex items-center gap-6 transition-smooth hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 flex-1">
-        <img src="./itpro.jpeg" alt="CV IT PRO Solutions Logo" class="company-logo rounded" />
-        <div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-1">CV IT PRO Solutions</h3>
-          <p class="text-gray-700 font-semibold text-sm mb-1">Backend Developer &amp; Project Manager</p>
-          <p class="text-gray-600 text-sm max-w-xs">
-            Leading backend projects and coordinating teams with a passion for building quality software and seamless collaboration.
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
+    </header>
 
-  <!-- Contact Information Section -->
-  <section id="contact" class="pt-16 pb-32">
-    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-8 max-w-3xl mx-auto text-center">Let's Connect</h2>
-    <div class="contact-container" role="contentinfo" aria-label="Contact Information">
-      <div class="contact-item" tabindex="0">
-        <div aria-hidden="true" class="contact-icon-wrapper" aria-label="Email icon">
-            <svg id="fi_5968534" enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m34.909 448.047h81.455v-197.818l-53.338-93.138-63.026 5.865v250.182c0 19.287 15.622 34.909 34.909 34.909z" fill="#0085f7"></path><path d="m395.636 448.047h81.455c19.287 0 34.909-15.622 34.909-34.909v-250.182l-62.935-5.865-53.428 93.138v197.818z" fill="#00a94b"></path><path d="m395.636 98.956-47.847 91.303 47.847 59.97 116.364-87.273v-46.545c0-43.142-49.251-67.782-83.782-41.891z" fill="#ffbc00"></path><path clip-rule="evenodd" d="m116.364 250.229-45.593-96.31 45.593-54.963 139.636 104.727 139.636-104.727v151.273l-139.636 104.727z" fill="#ff4131" fill-rule="evenodd"></path><path d="m0 116.411v46.545l116.364 87.273v-151.273l-32.582-24.436c-34.531-25.891-83.782-1.251-83.782 41.891z" fill="#e51c19"></path></g></svg>
+    <section class="py-8 bg-white shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <h4 class="text-3xl font-bold text-primary">90+</h4>
+                    <p class="text-gray-500 text-sm">Features Delivered</p>
+                </div>
+                <div>
+                    <h4 class="text-3xl font-bold text-primary">3</h4>
+                    <p class="text-gray-500 text-sm">Major Products</p>
+                </div>
+                <div>
+                    <h4 class="text-3xl font-bold text-primary">2+</h4>
+                    <p class="text-gray-500 text-sm">Years Experience</p>
+                </div>
+                <div>
+                    <h4 class="text-3xl font-bold text-primary">6+</h4>
+                    <p class="text-gray-500 text-sm">Certifications</p>
+                </div>
+            </div>
         </div>
-        <div class="contact-label">Email:</div>
-        <div class="contact-value">
-          <a href="mailto:arvelbudion01@gmail.com" tabindex="0" rel="noopener">arvelbudion01@gmail.com</a>
-        </div>
-      </div>
-      <div class="contact-item" tabindex="0">
-        <div aria-hidden="true" class="contact-icon-wrapper" aria-label="Phone icon">
-            <svg viewBox="0 0 176 176" xmlns="http://www.w3.org/2000/svg" id="fi_3536445"><g id="Layer_2" data-name="Layer 2"><g id="whatsapp"><rect id="background" fill="#29a71a" height="176" rx="24" width="176"></rect><g id="icon" fill="#fff"><path d="m126.8 49.2a54.57 54.57 0 0 0 -87.42 63.13l-5.79 28.11a2.08 2.08 0 0 0 .33 1.63 2.11 2.11 0 0 0 2.24.87l27.55-6.53a54.56 54.56 0 0 0 63.09-87.21zm-8.59 68.56a42.74 42.74 0 0 1 -49.22 8l-3.84-1.9-16.89 4 .05-.21 3.5-17-1.88-3.71a42.72 42.72 0 0 1 7.86-49.59 42.73 42.73 0 0 1 60.42 0 2.28 2.28 0 0 0 .22.22 42.72 42.72 0 0 1 -.22 60.19z"></path><path d="m116.71 105.29c-2.07 3.26-5.34 7.25-9.45 8.24-7.2 1.74-18.25.06-32-12.76l-.17-.15c-12.09-11.21-15.23-20.54-14.47-27.94.42-4.2 3.92-8 6.87-10.48a3.93 3.93 0 0 1 6.15 1.41l4.45 10a3.91 3.91 0 0 1 -.49 4l-2.25 2.92a3.87 3.87 0 0 0 -.35 4.32c1.26 2.21 4.28 5.46 7.63 8.47 3.76 3.4 7.93 6.51 10.57 7.57a3.82 3.82 0 0 0 4.19-.88l2.61-2.63a4 4 0 0 1 3.9-1l10.57 3a4 4 0 0 1 2.24 5.91z"></path></g></g></g></svg>
-        </div>
-        <div class="contact-label">Phone:</div>
-        <div class="contact-value">
-          <span tabindex="0">+62 858 7788 0700</span>
-        </div>
-      </div>
-      <div class="contact-item" tabindex="0">
-        <div aria-hidden="true" class="contact-icon-wrapper" aria-label="LinkedIn icon">
-            <svg viewBox="0 0 176 176" xmlns="http://www.w3.org/2000/svg" id="fi_3536505"><g id="Layer_2" data-name="Layer 2"><g id="linkedin"><rect id="background" fill="#0077b5" height="176" rx="24" width="176"></rect><g id="icon" fill="#fff"><path d="m63.4 48a15 15 0 1 1 -15-15 15 15 0 0 1 15 15z"></path><path d="m60 73v66.27a3.71 3.71 0 0 1 -3.71 3.73h-15.81a3.71 3.71 0 0 1 -3.72-3.72v-66.28a3.72 3.72 0 0 1 3.72-3.72h15.81a3.72 3.72 0 0 1 3.71 3.72z"></path><path d="m142.64 107.5v32.08a3.41 3.41 0 0 1 -3.42 3.42h-17a3.41 3.41 0 0 1 -3.42-3.42v-31.09c0-4.64 1.36-20.32-12.13-20.32-10.45 0-12.58 10.73-13 15.55v35.86a3.42 3.42 0 0 1 -3.37 3.42h-16.42a3.41 3.41 0 0 1 -3.41-3.42v-66.87a3.41 3.41 0 0 1 3.41-3.42h16.42a3.42 3.42 0 0 1 3.42 3.42v5.78c3.88-5.82 9.63-10.31 21.9-10.31 27.18 0 27.02 25.38 27.02 39.32z"></path></g></g></g></svg>
-        </div>
-        <div class="contact-label">LinkedIn:</div>
-        <div class="contact-value">
-          <a href="https://www.linkedin.com/in/arvelbudiono" target="_blank" rel="noopener noreferrer" tabindex="0">linkedin.com/in/arvelbudiono</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+    </section>
 
-<footer class="bg-white border-t border-gray-200 py-10 mt-24">
-  <div class="max-w-[1200px] mx-auto px-6 text-center text-gray-400 text-sm select-none">
-    &copy; 2024 Arvel Budiono. All rights reserved.
-  </div>
-</footer>
+    <section class="py-10 bg-gray-50 border-b border-gray-200">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Experience with Industry Leaders</p>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                <div class="h-10 md:h-12 w-auto company-logo flex items-center justify-center">
+                   <img src="mekari.png" alt="Mekari" class="h-full object-contain">
+                </div>
 
-<script>
-  // Mobile menu toggle
-  const navToggle = document.getElementById('nav-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
+                <div class="h-10 md:h-12 w-auto company-logo flex items-center justify-center">
+                   <img src="ibos.png" alt="IBos" class="h-full object-contain">
+                </div>
 
-  navToggle.addEventListener('click', () => {
-    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    navToggle.setAttribute('aria-expanded', String(!expanded));
-    mobileMenu.classList.toggle('hidden');
-  });
-</script>
+                <div class="h-10 md:h-12 w-auto company-logo flex items-center justify-center">
+                   <img src="itpro.jpeg" alt="ITPro" class="h-full object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-secondary mb-12 text-center">Professional Journey</h2>
+            
+            <div class="relative border-l-4 border-blue-100 ml-6 md:ml-12 space-y-12">
+                
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] bg-primary h-6 w-6 rounded-full border-4 border-white shadow group-hover:scale-125 transition"></div>
+                    <div class="bg-white border border-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition border-l-4 border-l-primary relative">
+                        
+                        <div class="absolute top-6 right-6 w-12 h-12 hidden md:block opacity-50">
+                            <img src="mekari_logo.jpeg" alt="Mekari Logo" class="w-full h-full object-contain rounded">
+                        </div>
+
+                        <span class="text-sm font-bold text-primary mb-1 block">Oct 2025 - Present</span>
+                        <h3 class="text-xl font-bold text-secondary flex items-center gap-2">
+                            Solution Engineer
+                        </h3>
+                        <p class="text-gray-600 font-medium mb-4">Mekari • Jakarta, Indonesia</p>
+                        
+                        <div class="mb-4 p-4 bg-blue-50/50 rounded border border-blue-100">
+                            <h4 class="font-bold text-sm text-gray-800 mb-1">Key Project: PT Gapura Angkasa E-Budgeting</h4>
+                            <p class="text-sm text-gray-600 mb-2">Developing a hybrid budgeting system to streamline financial workflows.</p>
+                            <div class="flex gap-2 flex-wrap">
+                                <span class="text-xs bg-white border border-blue-200 text-blue-800 px-2 py-1 rounded">Officeless (No-Code)</span>
+                                <span class="text-xs bg-white border border-gray-200 text-gray-800 px-2 py-1 rounded">Next.js</span>
+                                <span class="text-xs bg-white border border-yellow-200 text-yellow-800 px-2 py-1 rounded">JavaScript</span>
+                            </div>
+                        </div>
+
+                        <ul class="list-disc ml-4 text-gray-500 space-y-1 text-sm">
+                            <li>Implemented <strong>Officeless</strong> platform to accelerate process automation.</li>
+                            <li>Engineered custom backend logic using <strong>JavaScript</strong>.</li>
+                            <li>Built a responsive frontend interface using <strong>Next.js</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] bg-blue-400 h-6 w-6 rounded-full border-4 border-white shadow group-hover:scale-125 transition"></div>
+                    <div class="bg-white border border-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition relative">
+                        
+                         <div class="absolute top-6 right-6 w-12 h-12 hidden md:block opacity-50">
+                            <img src="itpro.jpeg" alt="IT Pro Logo" class="w-full h-full object-contain rounded">
+                        </div>
+
+                        <span class="text-sm font-bold text-primary mb-1 block">Apr 2025 - Oct 2025</span>
+                        <h3 class="text-xl font-bold text-secondary">Project Manager</h3>
+                        <p class="text-gray-600 font-medium mb-2">CV IT PRO Solutions • Semarang</p>
+                        <ul class="list-disc ml-4 text-gray-500 space-y-1">
+                            <li>Managed architecture and release for SalesMania & VehiLoc.</li>
+                            <li>Implemented Agile methodologies to streamline development.</li>
+                            <li>Coordinated between stakeholders and dev teams to meet deadlines.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] bg-blue-300 h-6 w-6 rounded-full border-4 border-white shadow group-hover:scale-125 transition"></div>
+                    <div class="bg-white border border-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition relative">
+                        
+                        <div class="absolute top-6 right-6 w-12 h-12 hidden md:block opacity-50">
+                            <img src="ibos.png" alt="BOS Logo" class="w-full h-full object-contain rounded">
+                        </div>
+
+                        <span class="text-sm font-bold text-primary mb-1 block">Jan 2024 - Oct 2025</span>
+                        <h3 class="text-xl font-bold text-secondary">Backend Developer</h3>
+                        <p class="text-gray-600 font-medium mb-2">iBos (PT Buana Online Sejahtera)</p>
+                        <ul class="list-disc ml-4 text-gray-500 space-y-1">
+                            <li>Developed 70+ new features for iBos, SalesMania, and VehiLoc.</li>
+                            <li>Utilized Flask, JavaScript, and PostgreSQL for robust API development.</li>
+                            <li>Optimized request speeds for Traveloka API integrations using FastAPI.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] bg-blue-200 h-6 w-6 rounded-full border-4 border-white shadow group-hover:scale-125 transition"></div>
+                    <div class="bg-white border border-gray-100 p-6 rounded-lg shadow-sm hover:shadow-md transition relative">
+                        
+                        <div class="absolute top-6 right-6 w-12 h-12 hidden md:block opacity-50">
+                            <img src="bangkit.jpg" alt="Bangkit Logo" class="w-full h-full object-contain rounded">
+                        </div>
+
+                        <span class="text-sm font-bold text-primary mb-1 block">Aug 2023 - Jan 2024</span>
+                        <h3 class="text-xl font-bold text-secondary">Cloud Computing Cohort</h3>
+                        <p class="text-gray-600 font-medium mb-2">Bangkit Academy (Google, Gojek, Tokopedia)</p>
+                        <p class="text-gray-500">Deployed Machine Learning models using Cloud Run and App Engine. Managed NoSQL databases with Firebase.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-secondary mb-4">Technical Expertise</h2>
+                <div class="w-20 h-1 bg-primary mx-auto rounded"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-blue-500">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Fullstack & No-Code</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Next.js</strong> & React</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Python (Flask, FastAPI)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i><strong>Officeless</strong> (No-Code)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Node.js / JavaScript</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-teal-500">
+                    <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-lg flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Cloud & DevOps</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Google Cloud Platform</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Cloud Run & App Engine</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Firebase & MongoDB</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>PostgreSQL</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-purple-500">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Project Management</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Agile Methodologies</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Stakeholder Management</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Product Planning</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Requirement Analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-secondary mb-12 text-center">Projects & Education</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-graduation-cap text-primary mr-3"></i> Education
+                    </h3>
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg">Unika Soegijapranata Semarang</h4>
+                        <p class="text-gray-600">Bachelor's Degree, Computer Science</p>
+                        <p class="text-sm text-gray-400">Aug 2021 - Jan 2025</p>
+                    </div>
+                    <div class="border-t pt-4 border-gray-200">
+                        <h4 class="font-bold text-lg">Kolese Loyola</h4>
+                        <p class="text-gray-600">Science Major</p>
+                        <p class="text-sm text-gray-400">2019 - 2021</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-paw text-primary mr-3"></i> Featured Project
+                    </h3>
+                    <h4 class="font-bold text-lg">Teman Buluku</h4>
+                    <p class="text-sm text-primary font-medium mb-2">Solusi Bahagia Peliharaan Anda • Mar 2025 - May 2025</p>
+                    
+                    <div class="flex gap-2 my-3 flex-wrap">
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">React.js</span>
+                        <span class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded">Express.js</span>
+                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">MySQL</span>
+                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">JWT</span>
+                    </div>
+
+                    <p class="text-gray-600 mb-4 text-sm">
+                        A full-stack platform for pet owners to book grooming services and track veterinary appointments.
+                    </p>
+
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-gray-500 uppercase">Backend Contributions:</p>
+                        <ul class="list-disc ml-4 text-sm text-gray-600 space-y-1">
+                            <li>Built <strong>20+ RESTful API endpoints</strong> for auth, services, and scheduling.</li>
+                            <li>Implemented <strong>JWT authentication</strong> for secure sessions.</li>
+                            <li>Optimized <strong>MySQL</strong> schema and complex queries.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h3 class="text-center font-bold text-gray-500 mb-6 uppercase tracking-wider text-sm">Certifications</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">Google Cloud Infrastructure</span>
+                    <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">Build & Secure Networks (GCP)</span>
+                    <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">JavaScript Fundamentals</span>
+                    <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-600 shadow-sm">Backend Development</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-secondary text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-8">Let's Work Together</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Currently based in Semarang/Jakarta. Open to discussing solution engineering and backend development opportunities.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
+                <a href="mailto:arvelbudion01@gmail.com" class="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-lg transition">
+                    <i class="fas fa-envelope text-primary"></i>
+                    <span>arvelbudion01@gmail.com</span>
+                </a>
+                <a href="tel:085877880700" class="flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-lg transition">
+                    <i class="fas fa-phone text-primary"></i>
+                    <span>085877880700</span>
+                </a>
+            </div>
+
+            <div class="flex justify-center space-x-6 text-2xl">
+                <a href="https://linkedin.com/in/arvelbudiono" class="hover:text-primary transition"><i class="fab fa-linkedin"></i></a>
+            </div>
+
+            <p class="text-gray-500 text-sm mt-12">© 2026 Arvel Budiono. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
