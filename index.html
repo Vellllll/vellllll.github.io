@@ -313,12 +313,12 @@
                     <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-server"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Backend, AI & NLP</h3>
+                    <h3 class="text-xl font-bold mb-4">Backend, AI &amp; NLP</h3>
                     <ul class="space-y-2 text-gray-600">
-                        <li><i class="fas fa-check text-green-500 mr-2"></i><strong>NestJS</strong> & Express.js</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Python (Flask, FastAPI)</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i><strong>NLP</strong> & <strong>LangGraph</strong></li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>PostgreSQL & SQLAlchemy ORM</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i><strong>NestJS</strong>, Express.js &amp; <strong>Go</strong></li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Python (FastAPI, Flask)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i><strong>NLP</strong>, <strong>LangGraph</strong> &amp; RAG</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>PostgreSQL, <strong>Qdrant</strong> &amp; Redis</li>
                     </ul>
                 </div>
 
@@ -353,8 +353,136 @@
 
     <section id="projects" class="py-20 bg-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-secondary mb-12 text-center">Projects & Education</h2>
-            
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-secondary mb-3">Projects &amp; Education</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto text-sm md:text-base">
+                    Production systems, event-driven AI architectures, and full-stack applications built end-to-end.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-10">
+                <!-- Sahabat Sport -->
+                <div class="bg-slate-900 text-white p-8 rounded-xl shadow-md border border-slate-800 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                                Enterprise Case Study • 2026
+                            </span>
+                            <i class="fas fa-store text-blue-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">Sahabat Sport</h3>
+                        <p class="text-sm text-blue-300 font-medium mb-3">Enterprise Sports E-Commerce Platform</p>
+
+                        <div class="flex gap-1.5 mb-4 flex-wrap">
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Next.js 14</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">NestJS 10</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Supabase PostgreSQL</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Vercel</span>
+                        </div>
+
+                        <p class="text-gray-300 text-sm mb-4">
+                            Omnichannel storefront with 3-tier RBAC, zero-trust checkout pricing, AI transaction insights, and high-throughput catalog caching.
+                        </p>
+
+                        <ul class="list-disc ml-4 text-xs text-gray-300 space-y-1.5 mb-6">
+                            <li>Serialized <code class="text-blue-300">runExclusive()</code> stock mutex &amp; <code class="text-blue-300">X-Idempotency-Key</code> checkout guard.</li>
+                            <li><strong>1,000-SKU Benchmark:</strong> 98.8% smaller payload, 15.2x throughput (2,568.7 req/s), 17.3x faster p95 (19.36 ms).</li>
+                            <li>Scrypt + HMAC-SHA256 auth, immutable audit trail, and 16/16 automated integration tests.</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-4 border-t border-slate-800 text-xs font-semibold">
+                        <a href="https://sahabatsport.site" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-primary hover:bg-blue-600 text-white transition">
+                            <i class="fas fa-external-link-alt"></i> Live Site
+                        </a>
+                        <a href="https://github.com/Vellllll/sahabat-sport" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-white/10 hover:bg-white/20 text-white transition">
+                            <i class="fab fa-github"></i> Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TicketRouter -->
+                <div class="bg-slate-900 text-white p-8 rounded-xl shadow-md border border-slate-800 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-teal-500/20 text-teal-300 border border-teal-500/30">
+                                AI Microservices • Event-Driven
+                            </span>
+                            <i class="fas fa-route text-teal-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">TicketRouter</h3>
+                        <p class="text-sm text-teal-300 font-medium mb-3">AI Helpdesk Triage &amp; RAG System</p>
+
+                        <div class="flex gap-1.5 mb-4 flex-wrap">
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Go</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">FastAPI</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">LangGraph</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Redis Streams</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Qdrant</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Gemini</span>
+                        </div>
+
+                        <p class="text-gray-300 text-sm mb-4">
+                            Asynchronous polyglot triage pipeline that classifies urgency, detects 24h semantic duplicates, and resolves or escalates tickets using SOP RAG.
+                        </p>
+
+                        <ul class="list-disc ml-4 text-xs text-gray-300 space-y-1.5 mb-6">
+                            <li>Go API Gateway (&lt; 30 ms target) with 24h <code class="text-teal-300">Idempotency-Key</code> &amp; Redis Streams DLQ (<code class="text-teal-300">XACK</code> after DB commit).</li>
+                            <li>3-node <strong>LangGraph</strong> worker (<code class="text-teal-300">triage</code> → <code class="text-teal-300">rag</code> → <code class="text-teal-300">decision</code>) with deterministic confidence/urgency gate.</li>
+                            <li><strong>30-Ticket Eval Suite:</strong> 90.00% category, urgency &amp; routing accuracy and 100.00% faithfulness.</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-4 border-t border-slate-800 text-xs font-semibold">
+                        <a href="https://github.com/Vellllll/ticket-router" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-white/10 hover:bg-white/20 text-white transition">
+                            <i class="fab fa-github"></i> Repository
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Codebase AI Mentor -->
+                <div class="bg-slate-900 text-white p-8 rounded-xl shadow-md border border-slate-800 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                                Open-Source AI • RAG Agent
+                            </span>
+                            <i class="fas fa-code-branch text-indigo-400 text-lg"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-1">Codebase AI Mentor</h3>
+                        <p class="text-sm text-indigo-300 font-medium mb-3">AST-Powered Codebase RAG &amp; Onboarding Agent</p>
+
+                        <div class="flex gap-1.5 mb-4 flex-wrap">
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">LangGraph</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Tree-sitter AST</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">Qdrant</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">BM25 + RRF</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">FlashRank</span>
+                            <span class="text-xs bg-white/10 text-gray-200 px-2 py-0.5 rounded">FastAPI</span>
+                        </div>
+
+                        <p class="text-gray-300 text-sm mb-4">
+                            Clones any GitHub repo, parses functions and classes via Tree-sitter AST with Git Blame enrichment, and answers architecture questions with Mermaid diagrams.
+                        </p>
+
+                        <ul class="list-disc ml-4 text-xs text-gray-300 space-y-1.5 mb-6">
+                            <li>Hybrid retrieval combining <code class="text-indigo-300">BGE-Small</code> dense vectors, <code class="text-indigo-300">BM25Okapi</code>, RRF (<code class="text-indigo-300">k=60</code>), &amp; FlashRank ONNX reranking.</li>
+                            <li>4-tool LangGraph ReAct agent (<code class="text-indigo-300">MemorySaver</code>) producing clickable <code class="text-indigo-300">file:line</code> citations &amp; live flowcharts.</li>
+                            <li>FastAPI HMAC-SHA256 GitHub webhook for incremental push re-indexing &amp; Bcrypt auth UI.</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-4 border-t border-slate-800 text-xs font-semibold">
+                        <a href="https://codebase-ai-mentor-rag.streamlit.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-primary hover:bg-blue-600 text-white transition">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/Vellllll/codebase-rag-onboarding" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded bg-white/10 hover:bg-white/20 text-white transition">
+                            <i class="fab fa-github"></i> Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 h-full">
                     <h3 class="text-xl font-bold mb-4 flex items-center">
@@ -374,7 +502,7 @@
 
                 <div class="bg-gray-50 p-8 rounded-xl shadow-sm border border-gray-100 h-full">
                     <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-shopping-bag text-primary mr-3"></i> Featured Project
+                        <i class="fas fa-shopping-bag text-primary mr-3"></i> Personal Project
                     </h3>
                     <h4 class="font-bold text-lg">E-Buket</h4>
                     <p class="text-sm text-primary font-medium mb-2">Personal E-Commerce Project • Ongoing</p>
@@ -442,7 +570,7 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-8">Let's Work Together</h2>
             <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Based in Semarang, Central Java, Indonesia (working across Semarang & Jakarta). Open to discussing solution engineering, backend development, and AI-assisted systems.
+                Based in Semarang, Central Java, Indonesia (working across Semarang &amp; Jakarta). Open to discussing solution engineering, backend development, and AI-assisted systems.
             </p>
             
             <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
@@ -457,7 +585,8 @@
             </div>
 
             <div class="flex justify-center space-x-6 text-2xl">
-                <a href="https://www.linkedin.com/in/arvelbudiono" target="_blank" class="hover:text-primary transition"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/arvelbudiono" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-primary transition"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Vellllll" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-primary transition"><i class="fab fa-github"></i></a>
             </div>
 
             <p class="text-gray-500 text-sm mt-12">© 2026 Arvel Budiono. All rights reserved.</p>
